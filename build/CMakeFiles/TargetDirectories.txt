@@ -1,0 +1,4 @@
+/home/ymx/projects/ledgerdb_MPT/build/CMakeFiles/MerkleTest.dir
+/home/ymx/projects/ledgerdb_MPT/build/CMakeFiles/MPTTest.dir
+/home/ymx/projects/ledgerdb_MPT/build/CMakeFiles/edit_cache.dir
+/home/ymx/projects/ledgerdb_MPT/build/CMakeFiles/rebuild_cache.dir
