@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -pthread -lssl -Wall -Wno-unused-function -fPIC")
+# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 
 find_package(TBB REQUIRED)
 
@@ -29,8 +30,6 @@ set(INC_PATH ${PROJECT_SOURCE_DIR}/include)
 set(TEST_PATH ${PROJECT_SOURCE_DIR}/test)
 
 file(GLOB SRC_FILES "src/*.cpp")
-# add_compile_options(-fsanitize=address)
-# add_link_options(-fsanitize=address)
 
 include_directories(
         PUBLIC ${INC_PATH})
@@ -40,8 +39,5 @@ add_executable(MPTTest ${TEST_PATH}/test_mpt.cpp ${SRC_FILES})
 
 target_link_libraries(MerkleTest TBB::tbb ${CRYPTOPP_LIB} ${ROCKSDB_LIB} ${LZ4_LIB} -lpthread -lz -lsnappy -lbz2 -lzstd -ldl)
 target_link_libraries(MPTTest TBB::tbb ${CRYPTOPP_LIB} ${ROCKSDB_LIB} ${LZ4_LIB} -lpthread -lz -lsnappy -lbz2 -lzstd -ldl)
-# target_compile_options(HashSIMD PUBLIC -maxrregcount 64)
 
-# add_compile_options(-fsanitize=address)
-# add_link_options(-fsanitize=address)
 
