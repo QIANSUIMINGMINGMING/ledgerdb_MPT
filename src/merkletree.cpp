@@ -20,7 +20,6 @@ void MerkleTree::update(const uint64_t starting_block_seq,
         leaf_block_hashes[i].ToBase32());
     level_hashes.emplace_back(leaf_block_hashes[i]);
   }
-
   std::string commit_seq = prev_commit_seq.size() == 0 ?
       "0" : std::to_string(std::stoul(prev_commit_seq) + 1);
   while (level_hashes.size() > 1 || prev_last_seq > 0 || level_starting_seq > 0) {

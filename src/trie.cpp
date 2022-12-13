@@ -86,6 +86,8 @@ Hash Trie::Set(const std::vector<std::string>& keys,
   for (size_t i = 0; i < keys.size(); ++i) {
     std::string encoded_key = MPTConfig::KeybytesToHex(keys[i]);
     Chunk val_chunk = MPTValueNode::Encode(vals[i]);
+    //debug
+    printf("insert %lu\n",i);
     new_root = Insert(&new_root, encoded_key, &val_chunk);
   }
   Hash new_root_hash = new_root.hash().Clone();
@@ -98,6 +100,8 @@ Chunk Trie::Insert(const Chunk* node, const std::string& key,
     const Chunk* value) const {
   if (key.length() == 0) {
     Chunk root(value->head());
+    //debug
+    printf("length 0");
     return std::move(root);
   }
   switch (node->type()) {
@@ -115,6 +119,8 @@ Chunk Trie::Insert(const Chunk* node, const std::string& key,
       new_root = full_node.setChildAtIndex(index, &new_child, &ori_child);
       Hash root_hash = new_root.hash().Clone();
       mpt_delta_->CreateChunk(root_hash, std::move(new_root));
+      //debug
+      printf("insert full\n");
       return mpt_delta_->GetChunk(root_hash);
     }
     case ChunkType::kMPTShort:
@@ -161,11 +167,15 @@ Chunk Trie::Insert(const Chunk* node, const std::string& key,
       }
       Hash root_hash = new_root.hash().Clone();
       mpt_delta_->CreateChunk(root_hash, std::move(new_root));
+      //debug
+      printf("insert short\n");
       return mpt_delta_->GetChunk(root_hash);
     }
     case ChunkType::kMPTHash:
     {
       auto child_node = GetHashNodeChild(node);
+      //debug
+      printf("insert hash\n");
       return Insert(&child_node, key, value);
     }
     case ChunkType::kMPTNil:
@@ -173,6 +183,8 @@ Chunk Trie::Insert(const Chunk* node, const std::string& key,
       Chunk chunk = MPTShortNode::Encode(key, value);
       Hash root_hash = chunk.hash().Clone();
       mpt_delta_->CreateChunk(root_hash, std::move(chunk));
+      //debug
+      printf("insert nil\n");
       return mpt_delta_->GetChunk(root_hash);
     }
     default:

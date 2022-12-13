@@ -11,7 +11,7 @@ int main() {
   ledgebase::DB db;
   db.Open("testdb");
 
-  for (size_t i = 0; i < 100000; ++i) {
+  for (size_t i = 0; i < 1000; ++i) {
     std::string key = "k" + std::to_string(i);
     std::string val = "v" + std::to_string(i);
     keys.emplace_back(key);

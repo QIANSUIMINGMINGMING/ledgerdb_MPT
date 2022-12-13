@@ -36,8 +36,9 @@ include_directories(
 
 add_executable(MerkleTest ${TEST_PATH}/test_merkle_tree.cpp ${SRC_FILES})
 add_executable(MPTTest ${TEST_PATH}/test_mpt.cpp ${SRC_FILES})
+add_executable(HashTest ${TEST_PATH}/test_hash.cpp ${SRC_FILES})
 
 target_link_libraries(MerkleTest TBB::tbb ${CRYPTOPP_LIB} ${ROCKSDB_LIB} ${LZ4_LIB} -lpthread -lz -lsnappy -lbz2 -lzstd -ldl)
 target_link_libraries(MPTTest TBB::tbb ${CRYPTOPP_LIB} ${ROCKSDB_LIB} ${LZ4_LIB} -lpthread -lz -lsnappy -lbz2 -lzstd -ldl)
-
+target_link_libraries(HashTest TBB::tbb ${CRYPTOPP_LIB} ${ROCKSDB_LIB} ${LZ4_LIB} -lpthread -lz -lsnappy -lbz2 -lzstd -ldl)
 

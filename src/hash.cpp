@@ -79,13 +79,13 @@ Hash Hash::ComputeFrom(const unsigned char* data, size_t len) {
   hash_gen.CalculateDigest(fullhash, data, len);
   std::copy(fullhash, fullhash + kByteLength, h.own_.get());
   return h;
-  //unsigned char fullhash[CryptoPP::SHA256::DIGESTSIZE];
-  //Hash h;
-  //h.Alloc();
-  //CryptoPP::SHA256 hash_gen;
-  //hash_gen.CalculateDigest(fullhash, data, len);
-  //std::copy(fullhash, fullhash + kByteLength, h.own_.get());
-  //return h;
+  // unsigned char fullhash[CryptoPP::SHA256::DIGESTSIZE];
+  // Hash h;
+  // h.Alloc();
+  // CryptoPP::SHA256 hash_gen;
+  // hash_gen.CalculateDigest(fullhash, data, len);
+  // std::copy(fullhash, fullhash + kByteLength, h.own_.get());
+  // return h;
 }
 
 Hash Hash::ComputeFrom(const std::string& data) {
